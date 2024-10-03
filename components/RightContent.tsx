@@ -9,7 +9,7 @@ import Hightlight from "@/components/Hightlight";
 const RightContent = () => {
   return (
     <section className="bg-[#f1f2fa] px-12 py-9 rounded-tr-3xl rounded-br-3xl hidden lg:block">
-      <div className="container min-w-[540px]">
+      <div className="container min-w-[751.737px]">
         <Tabs defaultValue="week">
           <TabsList>
             <div>
