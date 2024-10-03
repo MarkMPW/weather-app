@@ -29,11 +29,11 @@ const Main = () => {
         <div className="border-b-2 my-6" />
         <div className="flex items-center gap-3">
           <IoCloudyOutline />
-          <p className="font-medium text-sm">Mostly Cloudy</p>
+          <p className="medium-text">Mostly Cloudy</p>
         </div>
         <div className="flex items-center gap-3 mt-6">
           <SiMicrostrategy />
-          <p className="font-medium text-sm">Rain - 30%</p>
+          <p className="medium-text">Rain - 30%</p>
         </div>
       </div>
     </div>
