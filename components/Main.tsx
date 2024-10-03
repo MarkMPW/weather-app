@@ -14,36 +14,16 @@ import sunny from "@/public/assets/sunny.png";
 import cloudy from "@/public/assets/cloudy.png";
 import snow from "@/public/assets/snow.png";
 import rainy from "@/public/assets/rainy.png";
-interface WeatherData {
-  main: {
-    temp: number;
-    feels_like: number;
-    temp_min: number;
-    temp_max: number;
-    pressure: number;
-    humidity: number;
-    sea_level: number;
-    grnd_level: number;
-  };
-  weather: {
-    description: string;
-    main: string;
-  }[];
-  name: string;
-}
+import { useWeather } from "@/Context/weatherContext";
 
 const Main = () => {
+  const { weather, fetchWeather, error, isLoading } = useWeather();
   const [userInput, setUserInput] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [weather, setWeather] = useState<WeatherData>();
   const [weatherImage, setWeatherImage] = useState<StaticImageData>();
   const newDate = new Date();
   const currentDay = Days[newDate.getDay()];
   let hours = newDate.getHours();
   let minutes = newDate.getMinutes();
-
-  const baseUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
 
   const formatToTwoDigits = (num: number) => {
     return num < 10 ? `0${num}` : num.toString();
@@ -74,37 +54,15 @@ const Main = () => {
   }, [weather]);
 
   useEffect(() => {
-    fetchData("songkhla");
+    fetchWeather("songkhla");
   }, []);
-
-  const fetchData = async (location: string) => {
-    try {
-      const response = await fetch(
-        baseUrl +
-          location +
-          "&appid=" +
-          process.env.NEXT_PUBLIC_OPEN_WEATHER_KEY
-      );
-
-      if (!response.ok) {
-        setError(true);
-      } else {
-        const data = await response.json();
-        setWeather(data);
-        setIsLoading(false);
-        setError(false);
-      }
-    } catch (error: any) {
-      console.log("Failed to fetch data: ", error.message);
-    }
-  };
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
   };
 
   const handleSubmit = () => {
-    fetchData(userInput);
+    fetchWeather(userInput);
   };
 
   if (isLoading) {
@@ -147,16 +105,14 @@ const Main = () => {
           </Button>
         </div>
         {error ? (
-          <div className='flex items-center'>
-            <p className='text-2xl text-red-500 mt-5'>Country/City Not Found</p>
+          <div className="flex items-center">
+            <p className="text-2xl text-red-500 mt-5">Country/City Not Found</p>
           </div>
         ) : (
           <>
             <Image
               src={weatherImage ?? sunny}
               alt=""
-              width={200}
-              height={200}
               className="object-cover w-[200px] h-[200px]"
               priority={true}
             />
