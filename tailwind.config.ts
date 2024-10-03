@@ -8,6 +8,11 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+		screens: {
+			sm: '375',
+			md: '768px',
+			lg: '1200px'
+		},
   	extend: {
   		colors: {
   			background: 'hsl(var(--background))',
