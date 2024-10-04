@@ -1,31 +1,38 @@
+'use client'
+
 import React from "react";
 import HightlightCard from "./HightlightCard";
+import { useWeather } from "@/Context/weatherContext";
+import { visibilityInKm } from "@/utils/convert";
+import { assessVisibilityLevel, checkHumidityLevel } from "@/utils/checkLevel";
 
 const Hightlight = () => {
+  const { weather } = useWeather()
+
   return (
     <section className="mt-10">
       <h1 className="text-2xl font-medium">Today's Hightlights</h1>
       <div className="flex mt-9 justify-between">
         <HightlightCard title="Humandity">
           <div className='flex'>
-            <p className="text-4xl font-medium">7.70</p>
+            <p className="text-4xl font-medium">{weather?.main.humidity}</p>
             <p className='font-medium'>%</p>
           </div>
-          <p className='mt-7'>Degree: 120</p>
+          <p className='mt-7'>{checkHumidityLevel(weather?.main.humidity ?? 0)}</p>
         </HightlightCard>
         <HightlightCard title="Wind Status">
           <div className='flex items-end gap-2'>
-            <p className="text-4xl font-medium">12</p>
+            <p className="text-4xl font-medium">{weather?.wind.speed}</p>
             <p className='text-xl font-medium'>km/h</p>
           </div>
-          <p className='mt-7'>WSW</p>
+          <p className='mt-7'>Degree: {weather?.wind.deg}°</p>
         </HightlightCard>
         <HightlightCard title="Visibility">
           <div className='flex items-end gap-2'>
-            <p className="text-4xl font-medium">1</p>
+            <p className="text-4xl font-medium">{visibilityInKm(weather?.visibility ?? 0)}</p>
             <p className='font-medium'>km</p>
           </div>
-          <p className='mt-7'>Low</p>
+          <p className='mt-7'>{assessVisibilityLevel(weather?.visibility ?? 0)}</p>
         </HightlightCard>
       </div>
     </section>

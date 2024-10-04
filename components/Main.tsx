@@ -67,13 +67,13 @@ const Main = () => {
 
   if (isLoading) {
     return (
-      <div className="bg-white rounded-l-3xl rounded-r-3xl lg:rounded-r-none px-12 py-9 container">
+      <div className="bg-white rounded-l-3xl rounded-r-3xl lg:rounded-r-none px-12 py-9">
         <div className="animate-pulse container">
           <div className="py-2">
             <div className="h-10 bg-slate-700 rounded-lg" />
           </div>
           <div className="mt-10 flex flex-col gap-10">
-            <div className="rounded-full bg-slate-700 h-[150px] w-[150px]"></div>
+            <div className="rounded-full bg-slate-700 h-[200px] w-[200px]"></div>
             <div className="h-10 bg-slate-700 rounded-lg" />
             <div className="h-10 bg-slate-700 rounded-lg" />
             <div className="h-10 bg-slate-700 rounded-lg" />

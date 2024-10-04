@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-} from "react";
+import { createContext, useContext, useState, ReactNode, useMemo } from "react";
 
 interface WeatherData {
   main: {
@@ -23,6 +18,11 @@ interface WeatherData {
     main: string;
   }[];
   name: string;
+  visibility: number;
+  wind: {
+    speed: number;
+    deg: number;
+  };
 }
 
 interface WeatherContextProps {
@@ -74,10 +74,13 @@ export const WeatherProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const contextValue = useMemo(
+    () => ({ weather, fetchWeather, error, isLoading }),
+    [weather, error, isLoading, fetchWeather]
+  );
+
   return (
-    <WeatherContext.Provider
-      value={{ weather, fetchWeather, error, isLoading }}
-    >
+    <WeatherContext.Provider value={contextValue}>
       {children}
     </WeatherContext.Provider>
   );
