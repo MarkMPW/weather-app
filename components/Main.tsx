@@ -16,6 +16,7 @@ import snow from "@/public/assets/snow.png";
 import rainy from "@/public/assets/rainy.png";
 import { useWeather } from "@/Context/weatherContext";
 import { motion } from "framer-motion";
+import CountUp from "react-countup";
 
 const Main = () => {
   const { weather, fetchWeather, error, isLoading } = useWeather();
@@ -65,6 +66,8 @@ const Main = () => {
   const handleSubmit = () => {
     fetchWeather(userInput);
   };
+  
+  const convertIntoCelsius = Math.ceil(Number(weather?.main.temp) - 273.15)
 
   if (isLoading) {
     return (
@@ -127,7 +130,11 @@ const Main = () => {
             />
             <div className="flex">
               <h1 className="text-7xl">
-                {Math.ceil(Number(weather?.main.temp) - 273.15)}
+                <CountUp
+                  start={0}
+                  end={convertIntoCelsius}
+                  duration={3}
+                />
               </h1>
               <span className="text-5xl">°C</span>
             </div>
