@@ -24,8 +24,8 @@ const Main = () => {
   const [weatherImage, setWeatherImage] = useState<StaticImageData>(sunny);
   const newDate = new Date();
   const currentDay = Days[newDate.getDay()];
-  let hours = newDate.getHours();
-  let minutes = newDate.getMinutes();
+  const hours = newDate.getHours();
+  const minutes = newDate.getMinutes();
 
   const formatToTwoDigits = (num: number) => {
     return num < 10 ? `0${num}` : num.toString();
