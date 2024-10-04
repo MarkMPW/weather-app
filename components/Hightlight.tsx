@@ -12,7 +12,7 @@ const Hightlight = () => {
 
   return (
     <section className="mt-10">
-      <h1 className="text-2xl font-medium">Today's Hightlights</h1>
+      <h1 className="text-2xl font-medium">Today&apos;s Hightlights</h1>
       <div className="flex mt-9 justify-between">
         <HightlightCard title="Humandity">
           <div className="flex">
@@ -32,7 +32,12 @@ const Hightlight = () => {
         <HightlightCard title="Wind Status">
           <div className="flex items-end gap-2">
             <p className="text-4xl font-medium">
-              <CountUp start={0} end={weather?.wind.speed ?? 0} duration={3} decimals={2} />
+              <CountUp
+                start={0}
+                end={weather?.wind.speed ?? 0}
+                duration={3}
+                decimals={2}
+              />
             </p>
             <p className="text-xl font-medium">km/h</p>
           </div>
@@ -41,7 +46,11 @@ const Hightlight = () => {
         <HightlightCard title="Visibility">
           <div className="flex items-end gap-2">
             <p className="text-4xl font-medium">
-              <CountUp start={0} end={visibilityInKm(weather?.visibility ?? 0)} duration={3}/>
+              <CountUp
+                start={0}
+                end={visibilityInKm(weather?.visibility ?? 0)}
+                duration={3}
+              />
             </p>
             <p className="font-medium">km</p>
           </div>
