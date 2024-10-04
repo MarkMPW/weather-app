@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { Input } from "@/components/ui/input";
-import Image, { StaticImageData } from "next/image";
+import { StaticImageData } from "next/image";
 import { IoCloudyOutline } from "react-icons/io5";
 import { SiMicrostrategy } from "react-icons/si";
 import { FiTarget } from "react-icons/fi";
@@ -15,11 +15,13 @@ import cloudy from "@/public/assets/cloudy.png";
 import snow from "@/public/assets/snow.png";
 import rainy from "@/public/assets/rainy.png";
 import { useWeather } from "@/Context/weatherContext";
+import { motion } from "framer-motion";
+import CountUp from "react-countup";
 
 const Main = () => {
   const { weather, fetchWeather, error, isLoading } = useWeather();
   const [userInput, setUserInput] = useState("");
-  const [weatherImage, setWeatherImage] = useState<StaticImageData>();
+  const [weatherImage, setWeatherImage] = useState<StaticImageData>(sunny);
   const newDate = new Date();
   const currentDay = Days[newDate.getDay()];
   let hours = newDate.getHours();
@@ -64,6 +66,8 @@ const Main = () => {
   const handleSubmit = () => {
     fetchWeather(userInput);
   };
+  
+  const convertIntoCelsius = Math.ceil(Number(weather?.main.temp) - 273.15)
 
   if (isLoading) {
     return (
@@ -110,15 +114,27 @@ const Main = () => {
           </div>
         ) : (
           <>
-            <Image
-              src={weatherImage ?? sunny}
+            <motion.img
+              src={weatherImage.src}
               alt=""
               className="object-cover w-[200px] h-[200px]"
-              priority={true}
+              animate={{
+                translateY: [-15, 15]
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 5,
+                repeatType: 'mirror',
+                ease: 'easeInOut'
+              }}
             />
             <div className="flex">
               <h1 className="text-7xl">
-                {Math.ceil(Number(weather?.main.temp) - 273.15)}
+                <CountUp
+                  start={0}
+                  end={convertIntoCelsius}
+                  duration={3}
+                />
               </h1>
               <span className="text-5xl">°C</span>
             </div>
