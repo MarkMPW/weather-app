@@ -56,7 +56,7 @@ const Main = () => {
   }, [weather]);
 
   useEffect(() => {
-    fetchWeather("songkhla");
+    fetchWeather("Thailand");
   }, []);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
