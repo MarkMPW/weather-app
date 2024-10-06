@@ -23,6 +23,7 @@ interface WeatherData {
     speed: number;
     deg: number;
   };
+  timezone: number
 }
 
 interface WeatherContextProps {

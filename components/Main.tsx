@@ -17,6 +17,7 @@ import rainy from "@/public/assets/rainy.png";
 import { useWeather } from "@/Context/weatherContext";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
+import { formatTimezone } from "@/utils/timezone";
 
 const Main = () => {
   const { weather, fetchWeather, error, isLoading } = useWeather();
@@ -24,15 +25,6 @@ const Main = () => {
   const [weatherImage, setWeatherImage] = useState<StaticImageData>(sunny);
   const newDate = new Date();
   const currentDay = Days[newDate.getDay()];
-  const hours = newDate.getHours();
-  const minutes = newDate.getMinutes();
-
-  const formatToTwoDigits = (num: number) => {
-    return num < 10 ? `0${num}` : num.toString();
-  };
-
-  const formattedHours = formatToTwoDigits(hours);
-  const formattedMinutes = formatToTwoDigits(minutes);
 
   useEffect(() => {
     if (weather) {
@@ -141,7 +133,7 @@ const Main = () => {
             <p className="mt-6 text-lg font-medium">
               {currentDay},{" "}
               <span className="text-[#d6d7e7]">
-                {formattedHours}:{formattedMinutes}
+                {formatTimezone(weather?.timezone ?? 0)}
               </span>
             </p>
             <div className="border-b-2 my-6" />
