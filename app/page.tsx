@@ -1,6 +1,6 @@
 import Main from "@/components/Main";
 import RightContent from "@/components/RightContent";
-import { WeatherProvider } from "@/Context/weatherContext";
+import { WeatherProvider } from "@/context/weatherContext";
 
 export default function Home() {
   return (

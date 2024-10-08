@@ -14,7 +14,7 @@ import sunny from "@/public/assets/sunny.png";
 import cloudy from "@/public/assets/cloudy.png";
 import snow from "@/public/assets/snow.png";
 import rainy from "@/public/assets/rainy.png";
-import { useWeather } from "@/Context/weatherContext";
+import { useWeather } from "@/context/weatherContext";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
 import { formatTimezone } from "@/utils/timezone";
