@@ -2,7 +2,7 @@
 
 import React from "react";
 import HightlightCard from "./HightlightCard";
-import { useWeather } from "@/Context/weatherContext";
+import { useWeather } from "@/context/weatherContext";
 import { visibilityInKm } from "@/utils/convert";
 import { assessVisibilityLevel, checkHumidityLevel } from "@/utils/checkLevel";
 import CountUp from "react-countup";
