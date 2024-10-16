@@ -9,3 +9,5 @@ To run project
 ![Image](public/assets/screenshot1.png)
 The default location will be in Thailand
 > For the 7 days cards use mock data.
+
+## Demo [Weather-app](https://weather-app-vercel-phi.vercel.app/)
